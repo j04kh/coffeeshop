@@ -1,7 +1,11 @@
 import { Text, Box, Input, Flex, Spacer, Center } from "@chakra-ui/react";
 import { CartIcon } from "./Icons";
 
-const Navbar: React.FC = () => {
+interface Props {
+  itemsQty: number;
+}
+
+const Navbar: React.FC<Props> = ({ itemsQty }) => {
   return (
     <Center
       w="100%"
@@ -34,7 +38,7 @@ const Navbar: React.FC = () => {
           <Spacer />
           <Center bg="blue.800" borderRadius="5" mt={1} h={8} w={16}>
             <Flex align="center" justify="center">
-              <Text fontWeight="medium">3</Text>
+              <Text fontWeight="medium">{itemsQty}</Text>
               <Spacer w={1} />
               <CartIcon />
             </Flex>
