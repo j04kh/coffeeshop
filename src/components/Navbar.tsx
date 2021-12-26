@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
         h="100%"
         pt={3}
         px={8}
-        maxW="720px"
+        maxW="530px"
       >
         <Text>coffeeshop ☕ </Text>
         <Flex align="center" bottom={0}>
