@@ -3,7 +3,15 @@ import { CartIcon } from "./Icons";
 
 const Navbar: React.FC = () => {
   return (
-    <Center w="100%" h="85px" pos="fixed" fontSize="sm" bg="green.700" top={0}>
+    <Center
+      w="100%"
+      h="85px"
+      pos="fixed"
+      zIndex={20}
+      fontSize="sm"
+      bg="green.700"
+      top={0}
+    >
       <Box
         color="white"
         fontSize="sm"

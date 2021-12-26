@@ -1,0 +1,138 @@
+[
+  {
+    "id": "0",
+    "name": "Espresso",
+    "description": "descripcion",
+    "category": "hotDrink",
+    "picture": "https://iili.io/oFO7oJ.png",
+    "price": "3"
+  },
+  {
+    "id": "1",
+    "name": "Espresso double",
+    "description": "descripcion",
+    "category": "hotDrink",
+    "picture": "https://iili.io/oFO7oJ.png",
+    "price": "5"
+  },
+  {
+    "id": "2",
+    "name": "Capuccino",
+    "description": "descripcion",
+    "category": "hotDrink",
+    "picture": "https://iili.io/oFevqv.png",
+    "price": "4"
+  },
+  {
+    "id": "3",
+    "name": "Americano",
+    "description": "descripcion",
+    "category": "hotDrink",
+    "picture": "https://iili.io/oFOT91.png",
+    "price": "3"
+  },
+  {
+    "id": "4",
+    "name": "Mocha",
+    "description": "descripcion",
+    "category": "hotDrink",
+    "picture": "https://iili.io/oFOlFp.png",
+    "price": "4"
+  },
+  {
+    "id": "5",
+    "name": "Long Black",
+    "description": "descripcion",
+    "category": "hotDrink",
+    "picture": "https://iili.io/oFOT91.png",
+    "price": "2"
+  },
+  {
+    "id": "6",
+    "name": "White Tea",
+    "description": "descripcion",
+    "category": "hotDrink",
+    "picture": "https://iili.io/oFOMAX.png",
+    "price": "2"
+  },
+  {
+    "id": "7",
+    "name": "Green Tea",
+    "description": "descripcion",
+    "category": "hotDrink",
+    "picture": "https://iili.io/oFOYMv.png",
+    "price": "2"
+  },
+  {
+    "id": "8",
+    "name": "Oolong Tea",
+    "description": "descripcion",
+    "category": "hotDrink",
+    "picture": "https://iili.io/oFOYMv.png",
+    "price": "2"
+  },
+  {
+    "id": "9",
+    "name": "Lemon Pie",
+    "description": "descripcion",
+    "category": "bakery",
+    "picture": "https://iili.io/oFOaPR.png",
+    "price": "4"
+  },
+  {
+    "id": "10",
+    "name": "Brownie",
+    "description": "descripcion",
+    "category": "bakery",
+    "picture": "https://iili.io/oFeeLJ.png",
+    "price": "5"
+  },
+  {
+    "id": "11",
+    "name": "Cinnamon Roll",
+    "description": "descripcion",
+    "category": "bakery",
+    "picture": "https://iili.io/oFO0cN.png",
+    "price": "3"
+  },
+  {
+    "id": "12",
+    "name": "English Scone",
+    "description": "descripcion",
+    "category": "bakery",
+    "picture": "https://iili.io/oFO1SI.png",
+    "price": "3"
+  },
+  {
+    "id": "13",
+    "name": "Cookies",
+    "description": "descripcion",
+    "category": "bakery",
+    "picture": "https://iili.io/oFOAwg.png",
+    "price": "2"
+  },
+  {
+    "id": "14",
+    "name": "Cheese Salad",
+    "description": "descripcion",
+    "category": "sandwiches",
+    "picture": "https://iili.io/oFORta.png",
+    "price": "4"
+  },
+  {
+    "id": "15",
+    "name": "Tuna Salad",
+    "description": "descripcion",
+    "category": "sandwiches",
+    "picture": "https://iili.io/oFOG9t.png",
+    "price": "4"
+  },
+  {
+    "id": "16",
+    "name": "Brie Cheese",
+    "description": "descripcion",
+    "category": "sandwiches",
+    "picture": "https://iili.io/oFORta.png",
+    "price": "4"
+  }
+]

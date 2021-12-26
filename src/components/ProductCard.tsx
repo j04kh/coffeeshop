@@ -1,19 +1,33 @@
-import { Center, Circle, VStack, Text } from "@chakra-ui/react";
+import { Center, Circle, VStack, Text, chakra } from "@chakra-ui/react";
+import NextImage from "next/image";
 
 interface Props {
   id: string;
-  title: string;
+  name: string;
   price: string;
   picture?: string;
 }
 
-const ProductCard: React.FC<Props> = ({ id, title, price, picture }) => {
+//Custom img component to use next image optimization
+const ProductImage = chakra(NextImage, {
+  baseStyle: { maxH: 120, maxW: 120 },
+  shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
+});
+
+const ProductCard: React.FC<Props> = ({ id, name, price, picture }) => {
   return (
     <Center w="140px" h="210px" bg="gray.100" borderRadius="15" boxShadow="2xl">
       <VStack spacing="3px">
-        <Circle w="85px" h="85px" bg="gray" />
+        <ProductImage
+          src={picture || "DEFAULT_PICTURE"}
+          width={80}
+          height={80}
+          w="auto"
+          h="auto"
+          borderRadius={999}
+        />
         <Text fontSize="md" fontWeight="semibold">
-          {title}
+          {name}
         </Text>
         <Text fontSize="md" fontWeight="semibold">
           {`${price}$`}

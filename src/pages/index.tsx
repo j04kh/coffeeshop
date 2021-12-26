@@ -1,9 +1,23 @@
-import type { NextPage } from "next";
+import { useEffect, useState } from "react";
 import Navbar from "components/Navbar";
 import { Center, Grid } from "@chakra-ui/react";
 import ProductCard from "components/ProductCard";
+import { Product } from "types/Product";
+import api from "./api";
 
-const Home: NextPage = () => {
+const Home: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [status, setStatus] = useState<"init" | "resolved">("init");
+
+  useEffect(() => {
+    api.products.list().then((products) => {
+      setProducts(products);
+      setStatus("resolved");
+    });
+  }, []);
+
+  if (status === "init") return <h1>Loading...</h1>;
+
   return (
     <Center bg="gray.300" w="100%" h="100%" minH="100vh">
       <Navbar />
@@ -16,17 +30,17 @@ const Home: NextPage = () => {
           }}
           gap={3}
         >
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
-          <ProductCard title="Capuccino" id="1" price="12" />
+          {products.map((product) => {
+            return (
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                price={product.price}
+                picture={product.picture}
+              />
+            );
+          })}
         </Grid>
       </Center>
     </Center>
