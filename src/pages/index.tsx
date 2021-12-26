@@ -6,6 +6,7 @@ import { Product } from "types/Product";
 import api from "./api";
 import { useSelector } from "react-redux";
 import { selectItemsQuantity } from "redux/cartSlice";
+import Loading from "../components/Loading";
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -19,7 +20,7 @@ const Home: React.FC = () => {
     });
   }, []);
 
-  if (status === "init") return <h1>Loading...</h1>;
+  if (status === "init") return <Loading />;
 
   return (
     <Center bg="gray.300" w="100%" h="100%" minH="100vh">
