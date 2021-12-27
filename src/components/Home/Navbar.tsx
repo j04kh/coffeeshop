@@ -1,12 +1,15 @@
 import { Text, Box, Input, Flex, Spacer, Center } from "@chakra-ui/react";
 import { CartIcon } from "../Icons";
 import Link from "next/link";
+import React from "react";
 
 interface Props {
   itemsQty: number;
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Navbar: React.FC<Props> = ({ itemsQty }) => {
+const Navbar: React.FC<Props> = ({ itemsQty, search, setSearch }) => {
   return (
     <Center
       w="100%"
@@ -35,6 +38,7 @@ const Navbar: React.FC<Props> = ({ itemsQty }) => {
             fontSize="sm"
             mr={3}
             placeholder="Search items by name"
+            onChange={(e) => setSearch(e.target.value)}
           />
           <Spacer />
           <Link href="/cart">

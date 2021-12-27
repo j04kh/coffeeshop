@@ -13,6 +13,7 @@ const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [status, setStatus] = useState<"init" | "resolved">("init");
   const [category, setCategory] = useState<number>(0);
+  const [search, setSearch] = useState<string>("");
   const itemsQty = useSelector(selectItemsQuantity);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const Home: React.FC = () => {
 
   return (
     <Center bg="gray.300" w="100%" h="100%" minH="100vh">
-      <Navbar itemsQty={itemsQty} />
+      <Navbar itemsQty={itemsQty} search={search} setSearch={setSearch} />
       <Center w="100%" pt="95px" pb="20px" h="100%" minH="100vh" maxW="720px">
         <VStack gap={0} minH="100vh">
           <Category category={category} setCategory={setCategory} />
@@ -44,7 +45,8 @@ const Home: React.FC = () => {
           >
             {products.map((product) => {
               return (
-                product.category === categories[category] && (
+                product.category === categories[category] &&
+                product.name.toLowerCase().includes(search) && (
                   <ProductCard
                     key={product.id}
                     id={product.id}
