@@ -8,6 +8,7 @@ import { selectItemsAdded, selectItemsQtyById } from "redux/cartSlice";
 import { useState, useEffect } from "react";
 import { Product } from "types/Product";
 import api from "./api";
+import EmptyCart from "components/Cart/EmptyCart";
 
 const DEFAULT_PICTURE = "../assets/default.jpg";
 
@@ -33,6 +34,17 @@ const Cart: React.FC = () => {
   };
 
   if (status === "init") return <Loading />;
+
+  if (itemsAdded.length < 1) {
+    return (
+      <Center>
+        <VStack width="100%" bg="gray.300" height="100%" minH="100vh">
+          <Navbar />
+          <EmptyCart />
+        </VStack>
+      </Center>
+    );
+  }
 
   return (
     <Center>
