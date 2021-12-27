@@ -42,6 +42,7 @@ const ProductCard: React.FC<Props> = ({ id, name, price, picture }) => {
           px={5}
           py={1}
           borderRadius={5}
+          cursor="pointer"
           fontSize="sm"
           fontWeight="semibold"
           onClick={() => {

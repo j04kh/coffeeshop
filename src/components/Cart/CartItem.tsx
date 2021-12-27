@@ -39,6 +39,7 @@ const CartItem: React.FC<Props> = ({ id, name, picture, price, quantity }) => {
       <Spacer />
       <CloseIcon
         _hover={{ color: "red" }}
+        cursor="pointer"
         onClick={() => {
           return (
             dispatch(removeFromCart(id)) &&

@@ -17,12 +17,14 @@ const Category: React.FC<Props> = ({ category, setCategory }) => {
   return (
     <Flex width="100%" height="30px" fontSize="lg" fontWeight="semibold">
       <ChevronLeftIcon
+        cursor="pointer"
         onClick={() => setCategory(category === 0 ? 2 : category - 1)}
       />
       <Spacer />
       <Text>{categories[category]}</Text>
       <Spacer />
       <ChevronRightIcon
+        cursor="pointer"
         onClick={() => setCategory(category === 2 ? 0 : category + 1)}
       />
     </Flex>

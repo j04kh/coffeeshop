@@ -34,6 +34,7 @@ const CheckoutMenu: React.FC<Props> = ({ show, subtotal = 0, handler }) => {
           bg="green.700"
           color="white"
           w="100%"
+          cursor="pointer"
           mt={4}
           h="50px"
         >
