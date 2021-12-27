@@ -25,7 +25,7 @@ const EmptyCart: React.FC<Props> = ({ checkedOut }) => {
               py={2}
               borderRadius={20}
             >
-              ORDER NOW
+              {checkedOut ? "NEW ORDER" : "ORDER NOW"}
             </Center>
           </a>
         </Link>

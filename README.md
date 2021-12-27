@@ -2,7 +2,7 @@
 
 ### About the project
 
-Coffee Shop E-commerce built using Next.js and Chakra UI.
+Coffee Shop E-commerce built with Next.js and Chakra UI.
 See all the available products, filter products by category or search by name.
 Add products to your shopping cart and make orders!
 All data is fetched from a local JSON mock file.
