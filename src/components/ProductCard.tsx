@@ -1,4 +1,4 @@
-import { Center, VStack, Text, chakra } from "@chakra-ui/react";
+import { Center, VStack, Text, chakra, useToast } from "@chakra-ui/react";
 import NextImage from "next/image";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
@@ -18,6 +18,7 @@ const ProductImage = chakra(NextImage, {
 
 const ProductCard: React.FC<Props> = ({ id, name, price, picture }) => {
   const dispatch = useDispatch();
+  const toast = useToast();
   return (
     <Center w="140px" h="210px" bg="gray.100" borderRadius="15" boxShadow="2xl">
       <VStack spacing="3px">
@@ -43,7 +44,18 @@ const ProductCard: React.FC<Props> = ({ id, name, price, picture }) => {
           borderRadius={5}
           fontSize="sm"
           fontWeight="semibold"
-          onClick={() => dispatch(addToCart(id))}
+          onClick={() => {
+            return (
+              dispatch(addToCart(id)) &&
+              toast({
+                title: `${name}`,
+                description: "Added to cart",
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+              })
+            );
+          }}
         >
           ADD
         </Center>

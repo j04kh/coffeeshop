@@ -1,4 +1,4 @@
-import { Flex, Spacer, VStack, Text, chakra } from "@chakra-ui/react";
+import { Flex, Spacer, VStack, Text, chakra, useToast } from "@chakra-ui/react";
 import NextImage from "next/image";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
@@ -20,6 +20,7 @@ const ProductImage = chakra(NextImage, {
 
 const CartItem: React.FC<Props> = ({ id, name, picture, price, quantity }) => {
   const dispatch = useDispatch();
+  const toast = useToast();
   return (
     <Flex h="100px" w="full" px={5} bg="gray.200" alignItems="center">
       <ProductImage
@@ -38,7 +39,18 @@ const CartItem: React.FC<Props> = ({ id, name, picture, price, quantity }) => {
       <Spacer />
       <CloseIcon
         _hover={{ color: "red" }}
-        onClick={() => dispatch(removeFromCart(id))}
+        onClick={() => {
+          return (
+            dispatch(removeFromCart(id)) &&
+            toast({
+              title: `${name}`,
+              description: "Removed from cart",
+              status: "error",
+              duration: 2000,
+              isClosable: true,
+            })
+          );
+        }}
       />
     </Flex>
   );

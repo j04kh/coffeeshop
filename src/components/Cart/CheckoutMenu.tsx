@@ -5,9 +5,10 @@ import { checkout } from "../../redux/cartSlice";
 interface Props {
   show?: boolean;
   subtotal: number;
+  handler: (newState: boolean) => void;
 }
 
-const CheckoutMenu: React.FC<Props> = ({ show, subtotal = 0 }) => {
+const CheckoutMenu: React.FC<Props> = ({ show, subtotal = 0, handler }) => {
   const dispatch = useDispatch();
   return (
     <Center
@@ -26,7 +27,10 @@ const CheckoutMenu: React.FC<Props> = ({ show, subtotal = 0 }) => {
         </Flex>
         <Divider borderColor="black" />
         <Center
-          onClick={() => dispatch(checkout(undefined))}
+          onClick={() => {
+            handler(true);
+            return dispatch(checkout(undefined));
+          }}
           bg="green.700"
           color="white"
           w="100%"

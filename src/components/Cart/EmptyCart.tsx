@@ -1,11 +1,20 @@
 import { Center, Text, VStack } from "@chakra-ui/react";
 import Link from "next/link";
+import CheckedOut from "./CheckedOut";
 
-const EmptyCart: React.FC = () => {
+interface Props {
+  checkedOut: boolean;
+}
+
+const EmptyCart: React.FC<Props> = ({ checkedOut }) => {
   return (
     <Center w="100vw" h="100vh">
-      <VStack gap={5}>
-        <Text fontWeight="semibold">Your cart is empty 😕🍹 </Text>
+      <VStack gap={5} width="100%" maxW="500px">
+        {checkedOut ? (
+          <CheckedOut />
+        ) : (
+          <Text fontWeight="semibold">Your cart is empty 😕🍹 </Text>
+        )}
         <Link href="/">
           <a>
             <Center

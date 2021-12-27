@@ -18,6 +18,7 @@ const Cart: React.FC = () => {
 
   const [products, setProducts] = useState<Product[]>([]);
   const [status, setStatus] = useState<"init" | "resolved">("init");
+  const [checkedOut, setCheckedOut] = useState<boolean>(false);
 
   useEffect(() => {
     api.products.list().then((products) => {
@@ -40,7 +41,7 @@ const Cart: React.FC = () => {
       <Center>
         <VStack width="100%" bg="gray.300" height="100%" minH="100vh">
           <Navbar />
-          <EmptyCart />
+          <EmptyCart checkedOut={checkedOut} />
         </VStack>
       </Center>
     );
@@ -66,7 +67,7 @@ const Cart: React.FC = () => {
             );
           })}
         </VStack>
-        <CheckoutMenu subtotal={getSubtotal()} />
+        <CheckoutMenu handler={setCheckedOut} subtotal={getSubtotal()} />
       </VStack>
     </Center>
   );
