@@ -1,5 +1,5 @@
 import { Text, Box, Input, Flex, Spacer, Center } from "@chakra-ui/react";
-import { CartIcon } from "./Icons";
+import { CartIcon } from "../Icons";
 import Link from "next/link";
 
 interface Props {

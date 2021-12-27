@@ -1,5 +1,5 @@
 import { createSlice, Slice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import { RootState } from "./store";
 
 interface CartState {
   addedIds: number[];

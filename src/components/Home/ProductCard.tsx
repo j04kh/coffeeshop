@@ -1,7 +1,7 @@
 import { Center, VStack, Text, chakra, useToast } from "@chakra-ui/react";
 import NextImage from "next/image";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../redux/cartSlice";
+import { addToCart } from "../../redux/cartSlice";
 
 interface Props {
   id: string;
