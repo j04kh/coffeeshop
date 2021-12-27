@@ -1,5 +1,6 @@
 import { Text, Box, Input, Flex, Spacer, Center } from "@chakra-ui/react";
 import { CartIcon } from "./Icons";
+import Link from "next/link";
 
 interface Props {
   itemsQty: number;
@@ -36,13 +37,17 @@ const Navbar: React.FC<Props> = ({ itemsQty }) => {
             placeholder="Search items by name"
           />
           <Spacer />
-          <Center bg="blue.800" borderRadius="5" mt={1} h={8} w={16}>
-            <Flex align="center" justify="center">
-              <Text fontWeight="medium">{itemsQty}</Text>
-              <Spacer w={1} />
-              <CartIcon />
-            </Flex>
-          </Center>
+          <Link href="/cart">
+            <a>
+              <Center bg="blue.800" borderRadius="5" mt={1} h={8} w={16}>
+                <Flex align="center" justify="center">
+                  <Text fontWeight="medium">{itemsQty}</Text>
+                  <Spacer w={1} />
+                  <CartIcon />
+                </Flex>
+              </Center>
+            </a>
+          </Link>
         </Flex>
       </Box>
     </Center>
