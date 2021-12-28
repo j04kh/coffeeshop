@@ -5,7 +5,7 @@ import ProductCard from "../components/Home/ProductCard";
 import { Product } from "types/Product";
 import api from "./api";
 import { useSelector } from "react-redux";
-import { selectItemsQuantity } from "redux/cartSlice";
+import { selectItemsQuantity, selectItemsQtyById } from "redux/cartSlice";
 import Loading from "../components/Loading";
 import Category from "../components/Home/Category";
 
@@ -15,6 +15,7 @@ const Home: React.FC = () => {
   const [category, setCategory] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
   const itemsQty = useSelector(selectItemsQuantity);
+  const qtyById = useSelector(selectItemsQtyById);
 
   useEffect(() => {
     api.products.list().then((products) => {
@@ -30,8 +31,8 @@ const Home: React.FC = () => {
   return (
     <Center bg="gray.300" w="100%" h="100%" minH="100vh">
       <Navbar itemsQty={itemsQty} search={search} setSearch={setSearch} />
-      <Center w="100%" pt="95px" pb="20px" h="100%" minH="100vh" maxW="720px">
-        <VStack gap={0} minH="100vh">
+      <Center w="100%" pt="95px" pb="20px" h="100%" minH="100vh" maxW="530px">
+        <VStack gap={0} width="100%" minW="100%" minH="100vh" px={8}>
           <Category category={category} setCategory={setCategory} />
           <Divider borderColor="gray.600" />
           <Grid
@@ -53,6 +54,7 @@ const Home: React.FC = () => {
                     name={product.name}
                     price={product.price.toString()}
                     picture={product.picture}
+                    quantity={qtyById[product.id]}
                   />
                 )
               );

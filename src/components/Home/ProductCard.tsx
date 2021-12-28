@@ -8,6 +8,7 @@ interface Props {
   name: string;
   price: string;
   picture?: string;
+  quantity?: number;
 }
 
 //Custom img component to use next image optimization
@@ -16,11 +17,43 @@ const ProductImage = chakra(NextImage, {
   shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
 });
 
-const ProductCard: React.FC<Props> = ({ id, name, price, picture }) => {
+const ProductCard: React.FC<Props> = ({
+  id,
+  name,
+  price,
+  picture,
+  quantity = 0,
+}) => {
   const dispatch = useDispatch();
   const toast = useToast();
   return (
-    <Center w="140px" h="210px" bg="gray.100" borderRadius="15" boxShadow="2xl">
+    <Center
+      w="140px"
+      h="210px"
+      bg="gray.100"
+      pos="relative"
+      borderRadius="15"
+      boxShadow="2xl"
+    >
+      {quantity > 0 && (
+        <Center
+          w="10px"
+          h="10px"
+          top={0}
+          margin={1}
+          padding={3}
+          right={0}
+          fontSize="sm"
+          fontWeight="semibold"
+          color="gray.50"
+          pos="absolute"
+          bg="blue.700"
+          borderRadius="999"
+        >
+          <Text mb="1px">{quantity}</Text>
+        </Center>
+      )}
+
       <VStack spacing="3px">
         <ProductImage
           src={picture || "DEFAULT_PICTURE"}
