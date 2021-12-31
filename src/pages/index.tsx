@@ -1,32 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Home/Navbar";
+import { GetStaticProps } from "next";
 import { Center, Grid, Divider, VStack } from "@chakra-ui/react";
 import ProductCard from "../components/Home/ProductCard";
 import { Product } from "types/Product";
 import api from "./api";
 import { useSelector } from "react-redux";
 import { selectItemsQuantity, selectItemsQtyById } from "redux/cartSlice";
-import Loading from "../components/Loading";
 import Category from "../components/Home/Category";
 
-const Home: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [status, setStatus] = useState<"init" | "resolved">("init");
+interface Props {
+  products: Product[];
+}
+
+const Home: React.FC<Props> = ({ products }) => {
   const [category, setCategory] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
   const itemsQty = useSelector(selectItemsQuantity);
   const qtyById = useSelector(selectItemsQtyById);
 
-  useEffect(() => {
-    api.products.list().then((products) => {
-      setProducts(products);
-      setStatus("resolved");
-    });
-  }, []);
-
   const categories = ["hotDrink", "bakery", "sandwiches"];
-
-  if (status === "init") return <Loading />;
 
   return (
     <Center bg="gray.300" w="100%" h="100%" minH="100vh">
@@ -67,3 +60,11 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const products = await api.products.list();
+
+  return {
+    props: { products },
+  };
+};
