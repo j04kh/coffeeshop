@@ -13,13 +13,32 @@ interface Props {
   products: Product[];
 }
 
+enum SortType {
+  ALPHABETICALLY = "ALPHABETICALLY",
+  PRICE = "PRICE",
+}
+
 const Home: React.FC<Props> = ({ products }) => {
   const [category, setCategory] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
+  const [sort, setSort] = useState<SortType>(SortType.ALPHABETICALLY);
   const itemsQty = useSelector(selectItemsQuantity);
   const qtyById = useSelector(selectItemsQtyById);
 
   const categories = ["hotDrink", "bakery", "sandwiches"];
+
+  const sortProducts = () => {
+    let result = [...products];
+
+    if (sort === SortType.ALPHABETICALLY) {
+      result.sort((a, b) => {
+        return a.name > b.name ? 1 : -1;
+      });
+    }
+    return result;
+  };
+
+  const sortedProducts = sortProducts();
 
   return (
     <Center bg="gray.300" w="100%" h="100%" minH="100vh">
@@ -35,9 +54,11 @@ const Home: React.FC<Props> = ({ products }) => {
             alignSelf="end"
             size="xs"
             borderColor="gray.600"
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
           >
-            <option value="alphabetically">Alphabetically</option>
-            <option value="price">Price (Low to High)</option>
+            <option value={SortType.ALPHABETICALLY}>Alphabetically</option>
+            <option value={SortType.PRICE}>Price (Low to High)</option>
           </Select>
           <Grid
             templateColumns={{
@@ -48,7 +69,7 @@ const Home: React.FC<Props> = ({ products }) => {
             gap={3}
             pt={1}
           >
-            {products.map((product) => {
+            {sortedProducts.map((product) => {
               return (
                 product.category === categories[category] &&
                 product.name.toLowerCase().includes(search) && (
