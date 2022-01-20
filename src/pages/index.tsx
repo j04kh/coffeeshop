@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Home/Navbar";
 import { GetStaticProps } from "next";
-import { Center, Grid, Divider, VStack } from "@chakra-ui/react";
+import { Center, Grid, Divider, VStack, Select } from "@chakra-ui/react";
 import ProductCard from "../components/Home/ProductCard";
 import { Product } from "types/Product";
 import api from "./api";
@@ -28,6 +28,17 @@ const Home: React.FC<Props> = ({ products }) => {
         <VStack gap={0} width="100%" minW="100%" minH="100vh" px={8}>
           <Category category={category} setCategory={setCategory} />
           <Divider borderColor="gray.600" />
+          <Select
+            placeholder="List options"
+            variant="flushed"
+            width="30%"
+            alignSelf="end"
+            size="xs"
+            borderColor="gray.600"
+          >
+            <option value="alphabetically">Alphabetically</option>
+            <option value="price">Price (Low to High)</option>
+          </Select>
           <Grid
             templateColumns={{
               base: "repeat(2, 1fr)",

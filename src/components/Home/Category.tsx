@@ -15,7 +15,7 @@ const categories: { [key: number]: string } = {
 
 const Category: React.FC<Props> = ({ category, setCategory }) => {
   return (
-    <Flex width="100%" height="30px" fontSize="lg" fontWeight="semibold">
+    <Flex width="100%" height="25px" fontSize="lg" fontWeight="semibold">
       <ChevronLeftIcon
         cursor="pointer"
         onClick={() => setCategory(category === 0 ? 2 : category - 1)}
