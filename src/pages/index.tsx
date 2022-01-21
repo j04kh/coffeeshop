@@ -14,14 +14,14 @@ interface Props {
 }
 
 enum SortType {
-  ALPHABETICALLY = "ALPHABETICALLY",
+  NAME = "NAME",
   PRICE = "PRICE",
 }
 
 const Home: React.FC<Props> = ({ products }) => {
   const [category, setCategory] = useState<number>(0);
   const [search, setSearch] = useState<string>("");
-  const [sort, setSort] = useState<SortType>(SortType.ALPHABETICALLY);
+  const [sort, setSort] = useState<SortType>(SortType.NAME);
   const itemsQty = useSelector(selectItemsQuantity);
   const qtyById = useSelector(selectItemsQtyById);
 
@@ -30,9 +30,14 @@ const Home: React.FC<Props> = ({ products }) => {
   const sortProducts = () => {
     let result = [...products];
 
-    if (sort === SortType.ALPHABETICALLY) {
+    if (sort === SortType.NAME) {
       result.sort((a, b) => {
         return a.name > b.name ? 1 : -1;
+      });
+    }
+    if (sort === SortType.PRICE) {
+      result.sort((a, b) => {
+        return a.price > b.price ? 1 : -1;
       });
     }
     return result;
@@ -48,16 +53,15 @@ const Home: React.FC<Props> = ({ products }) => {
           <Category category={category} setCategory={setCategory} />
           <Divider borderColor="gray.600" />
           <Select
-            placeholder="List options"
             variant="flushed"
-            width="30%"
+            width="40%"
             alignSelf="end"
             size="xs"
             borderColor="gray.600"
             value={sort}
-            onChange={(e) => setSort(e.target.value)}
+            onChange={(e) => setSort(e.target.value as SortType)}
           >
-            <option value={SortType.ALPHABETICALLY}>Alphabetically</option>
+            <option value={SortType.NAME}>Alphabetically</option>
             <option value={SortType.PRICE}>Price (Low to High)</option>
           </Select>
           <Grid
