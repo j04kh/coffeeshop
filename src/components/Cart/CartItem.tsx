@@ -21,6 +21,15 @@ const ProductImage = chakra(NextImage, {
 const CartItem: React.FC<Props> = ({ id, name, picture, price, quantity }) => {
   const dispatch = useDispatch();
   const toast = useToast();
+
+  const formatPrice = (price: number) => {
+    return Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      currencyDisplay: "narrowSymbol",
+    }).format(price);
+  };
+
   return (
     <Flex h="100px" w="full" px={5} bg="gray.200" alignItems="center">
       <ProductImage
@@ -34,7 +43,9 @@ const CartItem: React.FC<Props> = ({ id, name, picture, price, quantity }) => {
       />
       <VStack ml={4} alignItems="start">
         <Text fontWeight="bold">{name}</Text>
-        <Text fontWeight="semibold">{`${quantity} x ${price}$`}</Text>
+        <Text fontWeight="semibold">{`${quantity} x ${formatPrice(
+          price
+        )}`}</Text>
       </VStack>
       <Spacer />
       <CloseIcon

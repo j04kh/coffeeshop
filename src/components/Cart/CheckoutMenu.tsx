@@ -23,7 +23,13 @@ const CheckoutMenu: React.FC<Props> = ({ show, subtotal = 0, handler }) => {
         <Flex>
           <Text>SUBTOTAL:</Text>
           <Spacer />
-          <Text>{`${subtotal}$`}</Text>
+          <Text>
+            {Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+              currencyDisplay: "narrowSymbol",
+            }).format(subtotal)}
+          </Text>
         </Flex>
         <Divider borderColor="black" />
         <Center
