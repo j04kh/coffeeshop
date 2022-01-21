@@ -63,11 +63,15 @@ const ProductCard: React.FC<Props> = ({
           h="auto"
           borderRadius={999}
         />
-        <Text fontSize="md" fontWeight="semibold">
+        <Text fontSize="md" fontWeight="medium">
           {name}
         </Text>
-        <Text fontSize="md" fontWeight="semibold">
-          {`${price}$`}
+        <Text fontSize="sm" fontWeight="semibold">
+          {Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+            currencyDisplay: "narrowSymbol",
+          }).format(parseInt(price))}
         </Text>
         <Center
           bg="green.700"
