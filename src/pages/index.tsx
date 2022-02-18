@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navbar from "../components/Home/Navbar";
 import { GetStaticProps } from "next";
 import { Center, Grid, Divider, VStack, Select } from "@chakra-ui/react";
 import ProductCard from "../components/Home/ProductCard";
-import { Product } from "types/Product";
 import api from "./api";
 import { useSelector } from "react-redux";
 import { selectItemsQuantity, selectItemsQtyById } from "redux/cartSlice";
 import Category from "../components/Home/Category";
+import Head from "next/head";
+import type { Product } from "types/Product";
 
 interface Props {
   products: Product[];
@@ -47,7 +48,12 @@ const Home: React.FC<Props> = ({ products }) => {
 
   return (
     <Center bg="gray.300" w="100%" h="100%" minH="100vh">
-      <Navbar itemsQty={itemsQty} search={search} setSearch={setSearch} />
+      <Head>
+        <title>Coffeeshop - Home</title>
+        <meta name="description" content="Homepage of Coffeeshop" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Navbar itemsQty={itemsQty} setSearch={setSearch} />
       <Center w="100%" pt="95px" pb="20px" h="100%" minH="100vh" maxW="530px">
         <VStack gap={0} width="100%" minW="100%" minH="100vh" px={8}>
           <Category category={category} setCategory={setCategory} />

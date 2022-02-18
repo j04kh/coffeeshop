@@ -5,11 +5,10 @@ import React from "react";
 
 interface Props {
   itemsQty: number;
-  search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Navbar: React.FC<Props> = ({ itemsQty, search, setSearch }) => {
+const Navbar: React.FC<Props> = ({ itemsQty, setSearch }) => {
   return (
     <Center
       w="100%"
@@ -38,6 +37,7 @@ const Navbar: React.FC<Props> = ({ itemsQty, search, setSearch }) => {
             fontSize="sm"
             mr={3}
             placeholder="Search items by name"
+            _placeholder={{ color: "gray.900" }}
             onChange={(e) => setSearch(e.target.value)}
           />
           <Spacer />

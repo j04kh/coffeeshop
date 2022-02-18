@@ -34,7 +34,7 @@ const CartItem: React.FC<Props> = ({ id, name, picture, price, quantity }) => {
     <Flex h="100px" w="full" px={5} bg="gray.200" alignItems="center">
       <ProductImage
         src={picture}
-        alt="Product"
+        alt={name}
         width={60}
         height={60}
         w="auto"

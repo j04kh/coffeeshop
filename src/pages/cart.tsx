@@ -6,9 +6,10 @@ import Loading from "components/Loading";
 import { useSelector } from "react-redux";
 import { selectItemsAdded, selectItemsQtyById } from "redux/cartSlice";
 import { useState, useEffect } from "react";
-import { Product } from "types/Product";
 import api from "./api";
 import EmptyCart from "components/Cart/EmptyCart";
+import Head from "next/head";
+import type { Product } from "types/Product";
 
 const DEFAULT_PICTURE = "../assets/default.jpg";
 
@@ -49,6 +50,11 @@ const Cart: React.FC = () => {
 
   return (
     <Center>
+      <Head>
+        <title>Coffeeshop - Cart</title>
+        <meta name="description" content="Cart of Coffeeshop" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <VStack width="100%" bg="gray.300" height="100%" minH="100vh">
         <Navbar />
         <VStack width="100%" maxW="640px" pt="65px" pb="140px">

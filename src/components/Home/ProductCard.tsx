@@ -57,6 +57,7 @@ const ProductCard: React.FC<Props> = ({
       <VStack spacing="3px">
         <ProductImage
           src={picture || "DEFAULT_PICTURE"}
+          alt={name}
           width={80}
           height={80}
           w="auto"
