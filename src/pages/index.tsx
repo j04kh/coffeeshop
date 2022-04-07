@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { selectItemsQuantity, selectItemsQtyById } from "redux/cartSlice";
 import Category from "../components/Home/Category";
 import Head from "next/head";
+import { useColorModeValue } from "@chakra-ui/color-mode";
+
 import type { Product } from "types/Product";
 
 interface Props {
@@ -46,8 +48,11 @@ const Home: React.FC<Props> = ({ products }) => {
 
   const sortedProducts = sortProducts();
 
+  const bg = useColorModeValue("gray.300", "blackAlpha.300");
+  const border = useColorModeValue("gray.600", "gray.300");
+
   return (
-    <Center bg="gray.300" w="100%" h="100%" minH="100vh">
+    <Center bg={bg} w="100%" h="100%" minH="100vh">
       <Head>
         <title>Coffeeshop - Home</title>
         <meta name="description" content="Homepage of Coffeeshop" />
@@ -57,7 +62,7 @@ const Home: React.FC<Props> = ({ products }) => {
       <Center w="100%" pt="95px" pb="20px" h="100%" minH="100vh" maxW="530px">
         <VStack gap={0} width="100%" minW="100%" minH="100vh" px={8}>
           <Category category={category} setCategory={setCategory} />
-          <Divider borderColor="gray.600" />
+          <Divider borderColor={border} />
           <Select
             variant="flushed"
             width="40%"

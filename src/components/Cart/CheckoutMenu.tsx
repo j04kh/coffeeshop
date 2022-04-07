@@ -1,6 +1,7 @@
 import { Box, Flex, Spacer, Text, Divider, Center } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { checkout } from "../../redux/cartSlice";
+import { useColorModeValue } from "@chakra-ui/color-mode";
 
 interface Props {
   show?: boolean;
@@ -10,11 +11,13 @@ interface Props {
 
 const CheckoutMenu: React.FC<Props> = ({ show, subtotal = 0, handler }) => {
   const dispatch = useDispatch();
+  const bg = useColorModeValue("gray.300", "blackAlpha.300");
+  const border = useColorModeValue("gray.600", "gray.300");
   return (
     <Center
       w="100%"
       h="130px"
-      bg="gray.300"
+      bg={bg}
       fontWeight="semibold"
       bottom="0"
       pos="fixed"
@@ -31,7 +34,7 @@ const CheckoutMenu: React.FC<Props> = ({ show, subtotal = 0, handler }) => {
             }).format(subtotal)}
           </Text>
         </Flex>
-        <Divider borderColor="black" />
+        <Divider borderColor={border} />
         <Center
           onClick={() => {
             handler(true);

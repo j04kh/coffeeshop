@@ -3,6 +3,7 @@ import NextImage from "next/image";
 import { CloseIcon } from "@chakra-ui/icons";
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "../../redux/cartSlice";
+import { useColorModeValue } from "@chakra-ui/color-mode";
 
 interface Props {
   id: string;
@@ -21,6 +22,7 @@ const ProductImage = chakra(NextImage, {
 const CartItem: React.FC<Props> = ({ id, name, picture, price, quantity }) => {
   const dispatch = useDispatch();
   const toast = useToast();
+  const bg = useColorModeValue("gray.200", "gray.800");
 
   const formatPrice = (price: number) => {
     return Intl.NumberFormat("en-US", {
@@ -31,7 +33,7 @@ const CartItem: React.FC<Props> = ({ id, name, picture, price, quantity }) => {
   };
 
   return (
-    <Flex h="100px" w="full" px={5} bg="gray.200" alignItems="center">
+    <Flex h="100px" w="full" px={5} bg={bg} alignItems="center">
       <ProductImage
         src={picture}
         alt={name}

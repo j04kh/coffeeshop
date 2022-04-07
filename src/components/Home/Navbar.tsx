@@ -1,4 +1,14 @@
-import { Text, Box, Input, Flex, Spacer, Center } from "@chakra-ui/react";
+import {
+  Text,
+  Box,
+  Input,
+  Flex,
+  Spacer,
+  Center,
+  IconButton,
+} from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { useColorMode, useColorModeValue } from "@chakra-ui/color-mode";
 import { CartIcon } from "../Icons";
 import Link from "next/link";
 import React from "react";
@@ -9,6 +19,10 @@ interface Props {
 }
 
 const Navbar: React.FC<Props> = ({ itemsQty, setSearch }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const bg = useColorModeValue("green.700", "green.900");
+  const btn = useColorModeValue("blue.800", "blue.900");
+
   return (
     <Center
       w="100%"
@@ -16,7 +30,7 @@ const Navbar: React.FC<Props> = ({ itemsQty, setSearch }) => {
       pos="fixed"
       zIndex={20}
       fontSize="sm"
-      bg="green.700"
+      bg={bg}
       top={0}
     >
       <Box
@@ -43,7 +57,7 @@ const Navbar: React.FC<Props> = ({ itemsQty, setSearch }) => {
           <Spacer />
           <Link href="/cart">
             <a>
-              <Center bg="blue.800" borderRadius="5" mt={1} h={8} w={16}>
+              <Center bg={btn} borderRadius="5" mt={1} h={8} w={16}>
                 <Flex align="center" justify="center">
                   <Text fontWeight="medium">{itemsQty}</Text>
                   <Spacer w={1} />
@@ -52,6 +66,20 @@ const Navbar: React.FC<Props> = ({ itemsQty, setSearch }) => {
               </Center>
             </a>
           </Link>
+          <Spacer />
+          <IconButton
+            aria-label="Toggle dark mode"
+            variant="ghost"
+            onClick={toggleColorMode}
+            icon={
+              colorMode === "light" ? (
+                <MoonIcon w={4} h={4} />
+              ) : (
+                <SunIcon w={4} h={4} />
+              )
+            }
+            _hover={{ bg: "transparent" }}
+          />
         </Flex>
       </Box>
     </Center>
