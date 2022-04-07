@@ -10,6 +10,7 @@ import api from "./api";
 import EmptyCart from "components/Cart/EmptyCart";
 import Head from "next/head";
 import type { Product } from "types/Product";
+import { useColorModeValue } from "@chakra-ui/color-mode";
 
 const DEFAULT_PICTURE = "../assets/default.jpg";
 
@@ -20,6 +21,8 @@ const Cart: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [status, setStatus] = useState<"init" | "resolved">("init");
   const [checkedOut, setCheckedOut] = useState<boolean>(false);
+
+  const bg = useColorModeValue("gray.300", "blackAlpha.300");
 
   useEffect(() => {
     api.products.list().then((products) => {
@@ -40,7 +43,7 @@ const Cart: React.FC = () => {
   if (itemsAdded.length < 1) {
     return (
       <Center>
-        <VStack width="100%" bg="gray.300" height="100%" minH="100vh">
+        <VStack width="100%" bg={bg} height="100%" minH="100vh">
           <Navbar />
           <EmptyCart checkedOut={checkedOut} />
         </VStack>
@@ -55,7 +58,7 @@ const Cart: React.FC = () => {
         <meta name="description" content="Cart of Coffeeshop" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <VStack width="100%" bg="gray.300" height="100%" minH="100vh">
+      <VStack width="100%" bg={bg} height="100%" minH="100vh">
         <Navbar />
         <VStack width="100%" maxW="640px" pt="65px" pb="140px">
           {products.map((prod) => {

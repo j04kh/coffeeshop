@@ -2,6 +2,7 @@ import { Center, VStack, Text, chakra, useToast } from "@chakra-ui/react";
 import NextImage from "next/image";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
+import { useColorModeValue } from "@chakra-ui/color-mode";
 
 interface Props {
   id: string;
@@ -26,11 +27,12 @@ const ProductCard: React.FC<Props> = ({
 }) => {
   const dispatch = useDispatch();
   const toast = useToast();
+  const bg = useColorModeValue("gray.100", "gray.800");
   return (
     <Center
       w="140px"
       h="210px"
-      bg="gray.100"
+      bg={bg}
       pos="relative"
       borderRadius="15"
       boxShadow="2xl"

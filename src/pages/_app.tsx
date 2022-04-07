@@ -4,11 +4,12 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
 import Head from "next/head";
+import theme from "styles/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Head>
           <meta title="Coffeeshop" />
           <meta
