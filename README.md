@@ -27,6 +27,7 @@ All data is fetched from a local JSON mock file.
 - Filter products by category.
 - Add products to your shopping cart.
 - View shopping cart and checkout your order.
+- Dark/light mode.
 
 ## How To Use
 
