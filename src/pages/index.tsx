@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Navbar from "../components/Home/Navbar";
 import { GetStaticProps } from "next";
-import { Center, Grid, Divider, VStack, Select } from "@chakra-ui/react";
+import { Center, Grid, Divider, VStack, Select, Text } from "@chakra-ui/react";
 import ProductCard from "../components/Home/ProductCard";
 import api from "./api";
 import { useSelector } from "react-redux";
@@ -46,7 +46,18 @@ const Home: React.FC<Props> = ({ products }) => {
     return result;
   };
 
+  const filterProducts = () => {
+    let result = [...sortedProducts];
+    return result.filter(
+      (prod) =>
+        prod.name.toLocaleLowerCase().includes(search) &&
+        prod.category === categories[category]
+    );
+  };
+
   const sortedProducts = sortProducts();
+
+  const filteredProducts = filterProducts();
 
   const bg = useColorModeValue("gray.300", "blackAlpha.300");
   const border = useColorModeValue("gray.600", "gray.300");
@@ -75,19 +86,18 @@ const Home: React.FC<Props> = ({ products }) => {
             <option value={SortType.NAME}>Alphabetically</option>
             <option value={SortType.PRICE}>Price (Low to High)</option>
           </Select>
-          <Grid
-            templateColumns={{
-              base: "repeat(2, 1fr)",
-              sm: "repeat(3, 1fr)",
-              md: "repeat(3, 1fr)",
-            }}
-            gap={3}
-            pt={1}
-          >
-            {sortedProducts.map((product) => {
-              return (
-                product.category === categories[category] &&
-                product.name.toLowerCase().includes(search) && (
+          {filteredProducts.length > 0 ? (
+            <Grid
+              templateColumns={{
+                base: "repeat(2, 1fr)",
+                sm: "repeat(3, 1fr)",
+                md: "repeat(3, 1fr)",
+              }}
+              gap={3}
+              pt={1}
+            >
+              {filteredProducts.map((product) => {
+                return (
                   <ProductCard
                     key={product.id}
                     id={product.id}
@@ -96,10 +106,17 @@ const Home: React.FC<Props> = ({ products }) => {
                     picture={product.picture}
                     quantity={qtyById[product.id]}
                   />
-                )
-              );
-            })}
-          </Grid>
+                );
+              })}
+            </Grid>
+          ) : (
+            <Center h="400px" w="100%">
+              <Text fontSize="lg" align="center">
+                No products were found matching your search, try with another
+                one!
+              </Text>
+            </Center>
+          )}
         </VStack>
       </Center>
     </Center>
